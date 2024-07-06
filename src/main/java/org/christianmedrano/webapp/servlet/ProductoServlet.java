@@ -21,15 +21,14 @@ public class ProductoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
         resp.setContentType("text/html");
         
         ArrayList<String> producto = new ArrayList<>();
         
-        String nombreProducto = req.getParameter(nombreProducto);
-        String descripcionProducto = req.getParameter(descripcionProducto);
-        String marcaProducto = req.getParameter(marcaProducto);
-        double precioProducto = Double.parseDouble(req.getParameter(precioProducto));
+        String nombreProducto = req.getParameter("nombreProducto");
+        String descripcionProducto = req.getParameter("descripcionProducto");
+        String marcaProducto = req.getParameter("marcaProducto");
+        double precioProducto = Double.parseDouble(req.getParameter("precioProducto"));
         
         producto.add(nombreProducto);
         producto.add(descripcionProducto);
@@ -37,7 +36,7 @@ public class ProductoServlet extends HttpServlet {
         producto.add(Double.toString(precioProducto));
         
         req.setAttribute("producto", producto);
-        getServletContext().getRequestDispatcher("/formulario-productos.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/formulario-productos/formulario-productos.jsp").forward(req, resp);
     }
     
     
