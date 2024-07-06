@@ -43,38 +43,48 @@
         </div>
       </nav>
         <div>
-            <% ArrayList<String> producto = request.getAttribute("producto")%>
+            <% ArrayList<String> producto = (ArrayList)request.getAttribute("producto");%>
             
             <%
-                for(String prod:producto) {%>
+               if(producto != null){
+                for(String prod:producto){%>
                 <<ul>
-                    <li0>
+                    <li><%=prod%></li>
+                </ul>>
                 <%}
+               } 
             %>
         </div>
        <div class="container mt-5 w-75">
-          <form action="/SDBG-Productos/producto-servlet/" method="post">
+          <form action="/SDBG-Productos/producto-servlet/" method="post" enctype="multipart/form-data">
                 <div class="form-floating mb-4">
-                <input  type="text" class="form-control" id="NombreProducto" name="nombreProducto" placeholder="">
+                <input  type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="">
                 <label for="NombreProducto">Nombre del Producto</label>
             </div>
             <div class="form-floating mb-4">
-                <input  type="text" class="form-control" id="DescripcionProducto" name="descripcionProducto" placeholder="">
+                <input  type="text" class="form-control" id="descripcionProducto" name="descripcionProducto" placeholder="">
                 <label for="NombreProducto">Descripción del Producto</label>
             </div>
             <div class="form-floating mb-4">
-                <input type="text" class="form-control" id="MarcaProducto" name="marcaProducto" placeholder="">
+                <input type="text" class="form-control" id="marcaProducto" name="marcaProducto" placeholder="">
                 <label for="MarcaProducto">Marca del Producto</label>
             </div>
-            <div class="input-group mb-4">
+            <div class="form-floating mb-4">
                 <span class="input-group-text">Q</span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input type="text" name="precioProducto" id="precioProducto" class="form-control">
                 <span class="input-group-text">.00</span>
             </div>
-          </form>
-          <div>
-            <button type="button" class="btn btn-success">Enviar</button>
+              <div>
+              <input class="btn btn-outline.success" type="submit" value="Agregar">
           </div>
+              <div class="container mt-5 w-75">
+          <% String mensajeExito = (String) request.getAttribute("Se ha Agregado con Exito!!"); %>
+          <% if (mensajeExito != null) { %>
+              <div class="alert alert-success" role="alert">
+                  <%= mensajeExito %>
+              </div>
+          <% } %>
+           </form>
       </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
